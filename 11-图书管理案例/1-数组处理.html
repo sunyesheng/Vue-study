@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app">
+        <input type="text" v-model="newadd">
+        <button v-on:click="add">添加元素</button>
+        <button v-on:click="deleteDom">删除元素</button>
+        <button v-on:click="change">修改元素</button>
+        <ul>
+            <li :key='index' v-for='(item,index) in list'>{{item}}</li>
+        </ul>
+        <div>
+            <ul>
+                <li>{{obj.name}}</li>
+                <li>{{obj.age}}</li>
+                <li>{{obj.sex}}</li>
+            </ul>
+        </div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            //元素
+            el: '.app',
+            //数据
+            data: {
+                newadd: '',
+                list: ['aaa', 'bbb', 'ccc'],
+                obj: {
+                    name: 'sunyesheng',
+                    age: '15'
+                }
+            },
+            //方法
+            methods: {
+                add: function () {
+                    this.list.push(this.newadd);
+                },
+                deleteDom: function () {
+                    this.list.pop()
+                },
+                change: function () {
+                    //两种方法作用相同
+                    //Vue.set(this.list, 2, 'sunyesheng');
+                    this.$set(this.list, 2, 'sunyesheng');
+
+                    //也key处理对象
+                    //vm.$set(对象,属性,值)
+                    this.$set(this.obj, 'sex', 'nan');
+                }
+            },
+            // 计算属性
+            computed: {
+
+            },
+            //侦听器
+            watch: {
+
+            },
+            // 过滤器
+            filters: {
+
+            },
+            // 自定义指令
+            directives: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

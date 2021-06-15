@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <div id="app">
+        <input type="text" v-zidingyi />
+    </div> -->
+    <div id="appp">
+        <input type="text" v-color='msg' />
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        /**
+         * 自定义指令 不带参数
+         * 
+        */
+        // Vue.directive('zidingyi', {
+        //     inserted: function (e) {
+        //         e.focus();
+        //     }
+        // })
+        // var vm = new Vue({
+        //     el: '#app',
+        //     data: {
+
+        //     },
+        //     methods: {
+
+        //     },
+        // });
+
+        /**
+         *自定义指令带参数 自定义指令写在前面
+         */
+        Vue.directive('color', {
+            bind: function (el, binding) {
+                //console.log(binding.value.color);
+                el.style.backgroundColor = binding.value;
+            },
+            inserted: function (e) {
+                e.focus();
+            }
+        })
+        var vm2 = new Vue({
+            el: '#appp',
+            data: {
+                msg: 'red'
+            },
+            methods: {
+
+            },
+        });
+
+        /**
+        |--------------------------------------------------
+        | 局部指令
+        |--------------------------------------------------
+        */
+        var vm3 = new Vue({
+            el: '',
+            data: {
+
+            },
+            methods: {
+
+            },
+            directives: {
+                color: {
+
+                }
+                //其他指令
+            }
+        })
+
+    </script>
+</body>
+
+</html>

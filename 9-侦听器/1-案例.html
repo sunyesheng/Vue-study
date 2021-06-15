@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model="firstName"><br />
+        <input type="text" v-model="lastName"><br />
+        <div>{{fullNameC}}</div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+
+        //侦听器 和 计算属性 均能实现
+
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'yesheng',
+                lastName: 'sun',
+                //fullName: 'sun yesheng'
+            },
+            //利用计算属性实现
+            computed: {
+                fullNameC: function () {
+                    return this.firstName + ' ' + this.lastName;
+                }
+            },
+            // watch: {
+            //     //val表示当前的最新值
+            //     firstName: function (val) {
+            //         this.fullName = this.lastName + ' ' + val;
+            //     },
+            //     lastName: function (val) {
+            //         this.fullName = val + ' ' + this.firstName;
+            //     },
+            //},
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

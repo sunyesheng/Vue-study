@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 插值表达式 支持一些简单的表达式计算 -->
+    <div id="app" v-cloak>
+        {{msg}}
+        <div>{{1+2}}</div>
+        <div v-text='msg'></div>
+        <div v-text='msg1'></div>
+        <div v-html='msg1'></div>
+        <div v-pre>{{msg}}</div>
+        <div v-once>{{msg}}</div>
+
+        <!-- 双向绑定 -->
+        <input type="text" v-model='msg'>
+
+        <!-- 绑定实现累加 -->
+        <div>
+            <!-- 事件绑定 -->
+            <button v-on:click='num++'>{{num}}</button>
+            <!-- 简写 -->
+            <button @click='num++'>{{num}}</button>
+            <!-- 直接绑定函数名称 -->
+            <button @click='handel'>{{num}}</button>
+            <!-- 调用函数 -->
+            <button @click='handel()'>{{num}}</button>
+            <!-- 传参数 -->
+            <button @click='handel(123,$event)'>{{num}}</button>
+        </div>
+    </div>
+
+    <script src="../vue.js"></script>
+    <script>
+        /*
+          vue使用基本步骤
+        1.提供标签供提供数据
+        2.引入库文件
+        */
+
+        //优点 不再需要操作Dom
+        var vm = new Vue({
+            el: '#app',//元素的挂在位置 可以是CSS选择器 也可以是DOM元素
+
+            //data 模型数据 值是一个对象
+            data: {
+                msg: 'hello vue',
+                msg1: '<h1>v-html的使用<h1>',
+                num: 0
+            },
+            methods: {
+                handel: function (p, event) {
+                    //这里的this也就是 vm
+                    console.log(p);
+                    console.log(event.target.innerHTML);
+                    this.num++;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box1 {
+            width: 200px;
+            height: 200px;
+            background-color: antiquewhite;
+        }
+
+        .box2 {
+            width: 200px;
+            height: 200px;
+            background-color: aqua;
+        }
+
+        .box3 {
+            border: 15px solid red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="div1">
+        <!-- 对象绑定 -->
+        <div v-bind:class="{box1:isActive,box2:isError}"></div>
+        <button v-on:click="handle">切换</button>
+
+        <!-- 数组绑定 -->
+        <div v-bind:class="[activeclass,errclass]"></div>
+        <button v-on:click="handle">切换</button>
+
+        <!-- 对象绑定和数组绑定结合 -->
+        <div v-bind:class="[activeclass,errclass,{box3:iswrong}]"></div>
+
+        <!-- 简化操作 -->
+        <div v-bind:class="arrClasses"></div>
+        <div v-bind:class="objClasses"></div>
+
+        <!-- 默认类的处理 -->
+        <div class="box3" v-bind:class="{box1:true}"></div>
+    </div>
+
+
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#div1',
+            data: {
+                isActive: true,
+                isError: false,
+                iswrong: true,
+                activeclass: 'box1',
+                errclass: 'box2',
+                arrClasses: ['box1', 'box2', 'box3'],
+                objClasses: { box1: true, box2: true, box3: true }
+            },
+            methods: {
+                handle: function () {
+                    this.isActive = !this.isActive;
+                    this.isError = !this.isError;
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

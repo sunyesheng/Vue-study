@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="app">
+        <div v-if='score>=90'>优秀</div>
+        <div v-if='score<90&&score>=80'>良好</div>
+        <div v-if='score<80'>及格</div>
+        <div v-show="false">v-show测试</div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '.app',
+            data: {
+                score: 85
+            },
+            methods: {
+
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <input type="text" /> -->
+        <div>{{date | format('yyyy-mm-dd')}}</div>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        /**
+        |--------------------------------------------------
+        | 参数的传递
+        |--------------------------------------------------
+        */
+        Vue.filter('format', function (value, arg) {
+            if (arg == 'yyyy-mm-dd') {
+                var ret = '';
+                ret = ret + value.getFullYear() + '-' + (value.getMonth() + 1) + '-' + value.getDate()
+            }
+            return ret
+        });
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                date: new Date()
+            },
+            computed: {
+
+            },
+            watch: {
+
+            },
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

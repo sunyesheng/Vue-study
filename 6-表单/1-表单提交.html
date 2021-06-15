@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" @click.prevent="handel">
+
+        <div>
+            <input name="001" type="radio" id="man" value="1" v-model='gsgs'>
+            <label for="man">男</label>
+
+
+            <input name="001" type="radio" id="woman" value="2" v-model='gsgs'>
+            <label for="woman">女</label>
+        </div>
+
+
+        <input type="text" v-model="uname">
+        <button type="submit">提交</button>
+    </form>
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+
+            el: 'form',
+            data: {
+                gsgs: 1,
+                uname: '孙业盛'
+            },
+            methods: {
+                handel: function () {
+                    console.log(vm
+                    );
+                },
+            },
+
+        })
+    </script>
+</body>
+
+</html>

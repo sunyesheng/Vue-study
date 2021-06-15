@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="item in fruits">{{item}}</li>
+            <li v-for="(item,index) in fruits">{{item}}</li>
+            <li v-for="item in ss">{{item.b}}</li>
+        </ul>
+        <ul>
+            <li v-for="(v,k,i) in Obj">{{v}}{{k}}{{i}}</li>
+        </ul>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                fruits: ['apple', 'mook', 'hello'],
+                ss: [{ a: 1, b: 2 }, { a: 3, b: 4 }],
+                Obj: { a: 1, b: 2, c: 3 }
+            }
+        });
+
+        //原生js遍历对象
+        var Obj = { a: 1, b: 2, c: 3 };
+        for (var key in Obj) {
+            console.log(key, Obj[key]);
+        }
+    </script>
+</body>
+
+</html>

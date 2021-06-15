@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <input type="text" v-model.lazy="uname" /><br />
+        <span>{{tip}}</span>
+        <!-- <button @click="hello">22132</button> -->
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        //1.采用侦听器的方法 监听用户名的变化
+        //2.调用后台接口进行验证
+        //3.根据验证的结果调整提示信息
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                uname: '',
+                tip: '123'
+            },
+            computed: {
+
+            },
+            watch: {
+                //val 是最新的值
+                uname: function (val) {
+                    //调用后台接口进行验证
+                    this.checkUname(val);
+                    //修改提示信息 因为是异步执行
+                    this.tip = '正在验证';
+                }
+            },
+            methods: {
+                hello: function () {
+                    alert('hj');
+                },
+                checkUname: function (uname) {
+                    //调用接口 但是可以使用定时任务的方式模拟接口的调用
+                    var that = this;
+                    setTimeout(function () {
+                        //模拟接口调用
+                        if (uname == 'admin') {
+                            that.tip = '用户名已经存在，请更换'
+                        } else {
+                            that.tip = '用户名可以使用'
+                        }
+                    }, 3000)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

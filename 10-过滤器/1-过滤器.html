@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <input type="text" v-model="msg">
+        <!-- 类似于管道符 上一个的结果作为下一个的输入 -->
+        <div>{{msg | upper}}</div>
+        <div></div>
+
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        /**
+        |--------------------------------------------------
+        | 过滤器和自定义指令类似  都分为全局过滤器和局部过滤器
+        全局过滤器使用 Vue.filter定义
+        局部过滤器使用 filters：{}进行定义
+        |--------------------------------------------------
+        */
+        Vue.filter('upper', function (val) {
+            return val.charAt(0).toUpperCase() + val.slice(1);
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: ''
+            },
+            methods: {},
+            watch: {},
+            computed: {}
+        });
+    </script>
+</body>
+
+</html>
