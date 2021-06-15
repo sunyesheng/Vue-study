@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div :style="{fontSize:fontsize+'px'}">{{msg}}</div>
+        <add-list @enlarge-size="handel"></add-list>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('add-list', {
+            template: `<button @mouseover='$emit("enlarge-size")'>增大按钮</button>`
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '文字增大',
+                fontsize: 10
+            },
+            methods: {
+                handel: function () {
+                    this.fontsize += 5;
+
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

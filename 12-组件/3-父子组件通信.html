@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <div>{{bmsg}}</div>
+        <!-- 静态传递属性 -->
+        <my-view title="这是父组件向子组件传递的信息"></my-view>
+        <!-- 冒号是v-bind缩写 动态绑定数据 -->
+        <my-view :title="newmsg"></my-view>
+        <!-- 结合使用  同理 向props数组中添加数据即可-->
+
+        <!-- 命名规则注意点 -->
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('my-view', {
+            props: ['title'],
+            data: function () {
+                return {
+                    msg: '子组件中的内容',
+
+                }
+            },
+            template: '<div>{{msg + "--" + title}}<div>'
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                bmsg: '这是父组件中的内容',
+                newsg: '这是父组件向子组件传递的动态信息'
+            },
+            methods: {},
+            computed: {},
+            watch: {},
+            filters: {},
+            directives: {}
+        })
+    </script>
+</body>
+
+</html>

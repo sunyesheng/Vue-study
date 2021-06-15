@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <text-tom></text-tom>
+        <text-jerry></text-jerry>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+
+        /**
+        |--------------------------------------------------
+        | 提供事件中心
+        |--------------------------------------------------
+        */
+        var hub = new Vue();
+
+
+        Vue.component('text-tom', {
+            data: function () {
+                return {
+                    num: 0
+                }
+            },
+            template: `<div>
+                        <div>tom---{{num}}</div>
+                        <div>
+                            <button @click='handle'>点击增加</button>
+                        </div>
+                     </div>`,
+            methods: {
+                handle: function () {
+                    hub.$emit('jerry-event', 5)
+                }
+            },
+            mounted: function () {
+                hub.$on('tom-event', (val) => {
+                    this.num += val;
+                })
+            }
+        })
+
+        Vue.component('text-jerry', {
+            data: function () {
+                return {
+                    num: 0
+                }
+            },
+            template: `<div>
+                        <div>jerry---{{num}}</div>
+                        <div>
+                            <button @click='handle'>点击增加</button>
+                        </div>
+                     </div>`,
+            methods: {
+                handle: function () {
+                    //触发兄弟组件的事件
+                    hub.$emit('tom-event', 1)
+                }
+            },
+            mounted: function () {
+                hub.$on('jerry-event', (val) => {
+                    this.num += val;
+                })
+            },
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {
+
+            }
+        })
+    </script>
+</body>
+
+</html>

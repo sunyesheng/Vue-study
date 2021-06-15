@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 第一种写法 -->
+        <text-tom>
+            <h1 slot="head">大标题</h1>
+            <h4>001</h4>
+            <h4>001</h4>
+            <h4>001</h4>
+            <h3 slot="main">主体</h3>
+        </text-tom>
+
+        <!-- 第二种写法 -->
+        <text-tom>
+            <template slot="head">
+                <h1>大标题</h1>
+                <h1>大标题</h1>
+            </template>
+            <h4>001</h4>
+            <h4>001</h4>
+            <h4>001</h4>
+            <h3 slot="main">主体</h3>
+        </text-tom>
+    </div>
+    <script src="../vue.js"></script>
+    <script>
+        Vue.component('text-tom', {
+            data: function () {
+                return {
+                    num: 0
+                }
+            },
+            template: `<div>
+                <a href=""><slot name="head"></slot></a>
+                <a href=""><slot></slot></a>
+                <slot name="main"></slot>
+                      </div>`
+        })
+        var vm = new Vue({
+            el: '#app',
+            data: {},
+            methods: {
+
+            },
+        })
+    </script>
+</body>
+
+</html>
