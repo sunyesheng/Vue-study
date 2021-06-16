@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        fetch('http://localhost/data')
+            .then((data) => {
+                return data.text();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+
+        /**
+        |--------------------------------------------------
+        | get请求 传统使用查询字符串来传递参数
+        |--------------------------------------------------
+        */
+        //传统的url传参
+        fetch('http://localhost/book?id=123', {
+            method: 'GET',
+        })
+            .then((data) => {
+                return data.text();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+
+        fetch('http://localhost/book1/456', {
+            method: 'GET',
+        })
+            .then((data) => {
+                return data.text();
+            })
+            .then((data) => {
+                console.log('11');
+            })
+
+        /**
+        |--------------------------------------------------
+        | post请求传参
+        |--------------------------------------------------
+        */
+        fetch('http://localhost/book2', {
+            method: 'POST',
+            body: 'uname=123&pwd=456',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
+            .then((data) => {
+                return data.text();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+    </script>
+</body>
+
+</html>
