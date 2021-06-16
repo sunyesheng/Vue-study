@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../axios.js"></script>
+    <script>
+        /**
+        |--------------------------------------------------
+        | get请求
+        |--------------------------------------------------
+        */
+        axios.get('http://localhost/axiosget', {
+            params: {
+                name: 'sunyesheng'
+            },
+
+        })
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+        /**
+        |--------------------------------------------------
+        | post请求 默认采用的json形式的数据 三种方式
+        |--------------------------------------------------
+        */
+        axios.post('http://localhost/axiospost', {
+            uname: 'helloworld'
+        }, {
+            //使用post请求时需要设置请求头
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' } //加上这个
+        })
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+
+        //通过实例对象
+        var params = new URLSearchParams();
+        params.append('name', 'sunyeshengbabab')
+
+        axios.post('http://localhost/axiospost', params, {
+            //使用post请求时需要设置请求头
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' } //加上这个
+        })
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch(err => {
+                console.error(err);
+            })
+    </script>
+</body>
+
+</html>

@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 
 app.use(bodyParser.json())
 
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.all('*', function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
@@ -54,7 +54,17 @@ app.get('/json', (req, res) => {
     })
 })
 
-
+/**
+ * axios
+ */
+app.get('/axiosget', (req, res) => {
+    console.log(req.query);
+    res.send('hello axiosget')
+})
+app.post('/axiospost', (req, res) => {
+    console.log(req.body);
+    res.send('hello axiospost')
+})
 
 
 
