@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../jquery.js"></script>
+    <script>
+        var str = '字符串'
+
+        $.ajax({
+            url: 'http://localhost/data',
+            method: 'GET',
+            data: {
+                num: 001
+            },
+            success: function (res) {
+                str = res;
+            }
+        })
+
+        console.log(str);
+    </script>
+</body>
+
+</html>
