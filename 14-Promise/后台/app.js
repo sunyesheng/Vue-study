@@ -44,6 +44,16 @@ app.post('/book2', (req, res) => {
 })
 
 
+/**
+ * json
+ */
+app.get('/json', (req, res) => {
+    res.json({
+        uname: '孙业盛',
+        age: 15
+    })
+})
+
 
 
 
