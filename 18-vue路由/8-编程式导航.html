@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue_2.5.22.js"></script>
+    <script src="./lib/vue-router_3.0.2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/admin">管理员</router-link>
+        <router-link to="/user">用户</router-link>
+        <router-view></router-view>
+        <hello-world></hello-world>
+    </div>
+    <script>
+        const admin = {
+            template: '<h1>管理员</h1>'
+        }
+        const user = {
+            template: '<h1>用户</h1>'
+        }
+        const Helorld = {
+            template: `
+                <div>
+                    <button @click="gogogo">跳转</button>
+                    <button @click="goback">退回</button>
+                </div>
+            `,
+            methods: {
+                gogogo: function () {
+                    this.$router.push('/user')
+                },
+                goback: function () {
+                    this.$router.go(-1)
+                }
+            },
+        }
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: '/admin',
+                    component: admin
+                },
+                {
+                    path: '/user',
+                    component: user
+                },
+            ]
+        })
+        const vm = new Vue({
+            el: '#app',
+            data: {
+
+            },
+            router,
+            components: {
+                'hello-world': Helorld
+            }
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue_2.5.22.js"></script>
+    <script src="./lib/vue-router_3.0.2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <!-- 路由连接 -->
+        <router-link to="/user">user</router-link>
+        <router-link to="/admin">admin</router-link>
+
+        <!-- 路由占位符 -->
+        <router-view></router-view>
+    </div>
+
+    <script>
+        const user = {
+            template: '<h1>user路由组件</h1>'
+        }
+        const admin = {
+            template: '<h1>admin路由组件</h1>'
+        }
+        //创建路由实例对象
+        const router = new VueRouter({
+            //所有的路由规则
+            routes: [{
+                path: '/user',
+                component: user
+            },
+            {
+                path: '/admin',
+                component: admin
+            }]
+        })
+        const vm = new Vue({
+            el: '#app',
+            router: router,
+        })
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./lib/vue_2.5.22.js"></script>
+    <script src="./lib/vue-router_3.0.2.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <router-link to="/user">user</router-link>
+        <router-link to="/admin">admin</router-link>
+
+        <router-view></router-view>
+    </div>
+    <script>
+        const user = {
+            template: '<h1>hello user</h1>'
+        }
+        const table1 = {
+            template: '<h1>hello table1</h1>'
+        }
+        const table2 = {
+            template: '<h1>hello table2</h1>'
+        }
+        const admin = {
+            template: `
+            <div>
+                <h1>hello admin</h1>
+                <router-link to="/admin/a1">a1</router-link>
+                <router-link to="/admin/a2">a2</router-link>
+                <router-view></router-view>
+            </div>
+            `
+        }
+        const router = new VueRouter({
+            routes: [
+                {
+                    path: '/user',
+                    component: user
+                },
+                {
+                    path: '/admin',
+                    component: admin,
+                    children: [
+                        {
+                            path: '/admin/a1',
+                            component: table1
+                        },
+                        {
+                            path: '/admin/a2',
+                            component: table2
+                        }
+                    ]
+                },
+                {
+                    path: '/',
+                    redirect: '/user'
+                }
+            ]
+        })
+        const vm = new Vue({
+            el: '#app',
+            router: router
+        })
+    </script>
+</body>
+
+</html>
