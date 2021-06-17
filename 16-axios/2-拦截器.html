@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+
+<body>
+    <script src="../axios.js"></script>
+    <script>
+        /**
+        |--------------------------------------------------
+        | 请求拦截器
+        |--------------------------------------------------
+        */
+        axios.interceptors.request.use(config => {
+            // Do something before request is sent
+            config.data = 'sunyesheng'
+            console.log(config.url);
+            config.headers.mytoken = 'nihao';
+            return config;
+        }, error => {
+            // Do something with request error
+            return Promise.reject(error);
+        });
+        /**
+        |--------------------------------------------------
+        | 相应拦截器
+        |--------------------------------------------------
+        */
+        axios.interceptors.response.use(response => {
+            // Do something before response is sent
+            console.log(response);
+            //对返回的数据进行加工
+            return response.data;
+        }, error => {
+            // Do something with response error
+            return Promise.reject(error);
+        });
+        /**
+        |--------------------------------------------------
+        | 发送请求
+        |--------------------------------------------------
+        */
+        axios.get('http://localhost/data')
+            .then((data) => {
+                console.log(data);
+            })
+
+    </script>
+</body>
+
+</html>

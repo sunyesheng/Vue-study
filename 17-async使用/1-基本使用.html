@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="../axios.js"></script>
+    <script>
+        axios.defaults.baseURL = 'http://localohost'
+        var queryText = async function () {
+            var ret = await new Promise((res, rej) => {
+                setTimeout(() => { res('hello async/await') }, 3000)
+            })
+            return ret
+        }
+
+        queryText()
+            .then((data) => {
+                console.log(data);
+                console.log('001');
+            })
+            .catch((err) => { console.log(err); })
+    </script>
+</body>
+
+</html>
