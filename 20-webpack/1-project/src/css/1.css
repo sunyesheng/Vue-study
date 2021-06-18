@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+body ul {
+  padding: 0;
+  margin: 0;
+}
+::placeholder {
+  color: red;
+}
+#app {
+  width: 200px;height: 200px;
+  background-color: antiquewhite;
+  background: url(../img/IMG_3538lan.jpg);
+}
