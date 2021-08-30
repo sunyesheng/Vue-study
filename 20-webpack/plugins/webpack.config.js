@@ -1,5 +1,5 @@
-const path = require('path')
-const MdToHtmlPlugin = require('./plugins/md-to-html')
+const path = require('path');
+const MdToHtmlPlugin = require('./plugins/md-to-html/index')
 module.exports = {
     mode: 'development',
     entry: path.resolve(__dirname, 'src/app.js'),
@@ -9,8 +9,9 @@ module.exports = {
     },
     plugins: [
         new MdToHtmlPlugin({
-            template: path.resolve(__dirname, 'text.md'),
-            filename:'text.html'
+            // 找到md文件
+            template: path.resolve(__dirname, 'test.md'),
+            filename:'test.html'
         })
     ]
 }
